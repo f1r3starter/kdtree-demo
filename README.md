@@ -9,9 +9,9 @@ docker-compose up -d
 ```
 
 ## Usage
-To check implementation just open address [http://localhost:8080](http://localhost:8080 "http://localhost:8080")
-[Naive implementation address](http://localhost:8080/naive "Naive implementation address")
-[KDTree implementation address](http://localhost:8080/kd "Naive implementation address")
+After you ran project, just open one of the next pages and click on the map:
++ [Naive implementation address](http://localhost:8080/naive "Naive implementation address")
++ [KDTree implementation address](http://localhost:8080/kd "Naive implementation address")
 
 ![](images/screen.png)
 
