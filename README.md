@@ -16,10 +16,10 @@ After you ran project, just open one of the next pages and click on the map:
 ![](images/screen.png)
 
 ## Benchmarks
-###Naive implementation:
+### Naive implementation:
 ![](images/naive.png)
 
-###KDTree implementation:
+### KDTree implementation:
 ![](images/kd.png)
 
 As you can see results are **amazing**!
