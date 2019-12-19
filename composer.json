@@ -1,0 +1,21 @@
+{
+    "name": "f1r3starter/kdtree-demo",
+    "type": "project",
+    "description": "K-d tree usage example",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andrii Filenko",
+            "email": "andrey.filenochko@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "src"
+        }
+    },
+    "require": {
+        "react/http": "^0.8.5",
+        "f1r3starter/kdtree": "^0.3.0"
+    }
+}
