@@ -41,17 +41,42 @@ class KDController
         $this->search = new NearestSearch($kdTree);
     }
 
+    /**
+     * @param ServerRequestInterface $request
+     *
+     * @return ResponseInterface
+     */
     public function __invoke(ServerRequestInterface $request): ResponseInterface
     {
         $body = json_decode($request->getBody()->getContents(), true);
         $point = $this->search->nearest(new Point($body['lat'], $body['lng']));
 
-        return $this->preparePostResponse(
-            [
-                'lat' => $point->getDAxis(0),
-                'lng' => $point->getDAxis(1),
-                'name' => $point->getName()
-            ]
-        );
+        if (null === $point) {
+            $response = $this->formatResponse(null, null, null);
+        } else {
+            $response = $this->formatResponse(
+                $point->getDAxis(0),
+                $point->getDAxis(1),
+                $point->getName()
+             );
+        }
+
+        return $this->preparePostResponse($response);
+    }
+
+    /**
+     * @param float|null $lat
+     * @param float|null $lng
+     * @param string|null $name
+     *
+     * @return array
+     */
+    private function formatResponse(?float $lat, ?float $lng, ?string $name): array
+    {
+        return [
+            'lat' => $lat,
+            'lng' => $lng,
+            'name' => $name,
+        ];
     }
 }
