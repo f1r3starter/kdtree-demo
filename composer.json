@@ -16,6 +16,6 @@
     },
     "require": {
         "react/http": "^0.8.5",
-        "f1r3starter/kdtree": "^0.4"
+        "f1r3starter/kdtree": "v0.4"
     }
 }

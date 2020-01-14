@@ -3,9 +3,10 @@
 namespace App\Controller;
 
 use App\Model\CitiesCollection;
+use App\Model\City;
 use KDTree\Exceptions\PointAlreadyExists;
-use KDTree\KDTree;
 use KDTree\Search\NearestSearch;
+use KDTree\Structure\KDTree;
 use KDTree\ValueObject\Point;
 use Psr\Http\Message\{ResponseInterface, ServerRequestInterface};
 

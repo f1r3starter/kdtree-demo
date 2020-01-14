@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Model\CitiesCollection;
+use App\Model\City;
 use KDTree\ValueObject\Point;
 use Psr\Http\Message\ServerRequestInterface;
 

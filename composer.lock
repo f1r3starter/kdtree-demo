@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0b8da6ea683545d4d80025f49bf96f21",
+    "content-hash": "dcac2da480f6fb9060b31ff968f1e572",
     "packages": [
         {
             "name": "evenement/evenement",
@@ -51,16 +51,16 @@
         },
         {
             "name": "f1r3starter/kdtree",
-            "version": "v0.3",
+            "version": "v0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/f1r3starter/kdtree.git",
-                "reference": "225ed3b27331241b651313992d893fae65bd8798"
+                "reference": "fa4bacd1efc376bdd7c4bf4ba2ee89f364355fc8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/f1r3starter/kdtree/zipball/225ed3b27331241b651313992d893fae65bd8798",
-                "reference": "225ed3b27331241b651313992d893fae65bd8798",
+                "url": "https://api.github.com/repos/f1r3starter/kdtree/zipball/fa4bacd1efc376bdd7c4bf4ba2ee89f364355fc8",
+                "reference": "fa4bacd1efc376bdd7c4bf4ba2ee89f364355fc8",
                 "shasum": ""
             },
             "require": {
@@ -86,7 +86,7 @@
                 }
             ],
             "description": "Yet another K-d tree implementation",
-            "time": "2019-12-19T15:56:01+00:00"
+            "time": "2019-12-30T18:46:43+00:00"
         },
         {
             "name": "psr/http-message",
