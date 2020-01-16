@@ -17,5 +17,8 @@
     "require": {
         "react/http": "^0.8.5",
         "f1r3starter/kdtree": "v0.4"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-master"
     }
 }
