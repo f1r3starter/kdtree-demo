@@ -26,7 +26,7 @@ class NaiveController
          */
         foreach ($citiesCollection as $city) {
             $point = new Point($city->getLat(), $city->getLng());
-            $point->setName($city->getName());
+            $point->setName($this->prepareName($city));
             $this->points[] = $point;
         }
     }

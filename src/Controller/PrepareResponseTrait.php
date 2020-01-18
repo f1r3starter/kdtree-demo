@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Model\City;
 use React\Http\Response;
 
 trait PrepareResponseTrait
@@ -24,5 +25,15 @@ trait PrepareResponseTrait
             ],
             json_encode($response)
         );
+    }
+
+    /**
+     * @param City $city
+     *
+     * @return string
+     */
+    private function prepareName(City $city): string
+    {
+        return sprintf('%s (%s)', $city->getName(), $city->getCountry());
     }
 }

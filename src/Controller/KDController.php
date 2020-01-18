@@ -32,7 +32,7 @@ class KDController
         foreach ($citiesCollection as $city) {
             try {
                 $point = new Point($city->getLat(), $city->getLng());
-                $point->setName($city->getName());
+                $point->setName($this->prepareName($city));
                 $kdTree->put($point);
             } catch (PointAlreadyExists $e) {
             }
