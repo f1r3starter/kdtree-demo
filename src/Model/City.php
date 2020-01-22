@@ -2,7 +2,7 @@
 
 namespace App\Model;
 
-class City
+final class City
 {
     /**
      * @var string
@@ -10,12 +10,12 @@ class City
     private $name;
 
     /**
-     * @var string
+     * @var float
      */
     private $lat;
 
     /**
-     * @var string
+     * @var float
      */
     private $lng;
 
@@ -26,11 +26,11 @@ class City
 
     /**
      * @param string $name
-     * @param string $lat
-     * @param string $lng
+     * @param float $lat
+     * @param float $lng
      * @param string $country
      */
-    public function __construct(string $name, string $lat, string $lng, string $country)
+    public function __construct(string $name, float $lat, float $lng, string $country)
     {
         $this->name = $name;
         $this->lat = $lat;
@@ -41,14 +41,14 @@ class City
     /**
      * @param array $data
      *
-     * @return static
+     * @return self
      */
     public static function createFromArray(array $data): self
     {
         return new self(
             $data['name'],
-            $data['lat'],
-            $data['lng'],
+            (float)$data['lat'],
+            (float)$data['lng'],
             $data['country']
         );
     }
@@ -62,17 +62,17 @@ class City
     }
 
     /**
-     * @return string
+     * @return float
      */
-    public function getLat(): string
+    public function getLat(): float
     {
         return $this->lat;
     }
 
     /**
-     * @return string
+     * @return float
      */
-    public function getLng(): string
+    public function getLng(): float
     {
         return $this->lng;
     }

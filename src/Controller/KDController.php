@@ -10,7 +10,7 @@ use KDTree\Structure\KDTree;
 use KDTree\ValueObject\Point;
 use Psr\Http\Message\{ResponseInterface, ServerRequestInterface};
 
-class KDController
+final class KDController
 {
     use PrepareResponseTrait;
 

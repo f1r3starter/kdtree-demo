@@ -5,7 +5,7 @@ namespace App\Model;
 use InvalidArgumentException;
 use Iterator;
 
-class CitiesCollection implements Iterator
+final class CitiesCollection implements Iterator
 {
     /**
      * @var array
