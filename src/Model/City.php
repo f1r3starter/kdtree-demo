@@ -39,7 +39,7 @@ final class City
     }
 
     /**
-     * @param array $data
+     * @param struct $data
      *
      * @return self
      */
