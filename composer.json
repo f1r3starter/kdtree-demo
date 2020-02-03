@@ -12,9 +12,10 @@
     "autoload": {
         "psr-4": {
             "App\\": "src"
-        }
+        } 
     },
     "require": {
+        "php": ">=7.2.0",
         "react/http": "^0.8.5",
         "f1r3starter/kdtree": "v0.4"
     },
