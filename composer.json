@@ -12,14 +12,13 @@
     "autoload": {
         "psr-4": {
             "App\\": "src"
-        } 
+        }
     },
     "require": {
         "php": ">=7.3.0",
         "react/http": "^0.8.5",
         "f1r3starter/kdtree": "v0.4",
-        "ext-json": "*",
-        "php": ">=7.2.0"
+        "ext-json": "*"
     },
     "require-dev": {
         "roave/security-advisories": "dev-master"
