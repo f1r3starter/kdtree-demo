@@ -39,17 +39,17 @@ final class City
     }
 
     /**
-     * @param array $data
+     * @param struct $data
      *
      * @return self
      */
     public static function createFromArray(array $data): self
     {
         return new self(
-            $data['name'],
+            (string)$data['name'],
             (float)$data['lat'],
             (float)$data['lng'],
-            $data['country']
+            (string)$data['country']
         );
     }
 
