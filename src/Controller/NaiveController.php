@@ -33,7 +33,7 @@ final class NaiveController
 
     public function __invoke(ServerRequestInterface $request)
     {
-        $body = json_decode($request->getBody()->getContents(), true);
+        $body = json_decode($request->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
         $searchingPoint = new Point($body['lat'], $body['lng']);
         $foundPoint = null;
         $minDistance = PHP_INT_MAX;

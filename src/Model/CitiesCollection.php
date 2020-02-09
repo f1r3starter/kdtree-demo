@@ -21,7 +21,7 @@ final class CitiesCollection implements Iterator
             throw new InvalidArgumentException('File does not exists: ' . $filename);
         }
 
-        $this->data = json_decode(file_get_contents($filename), true);
+        $this->data = json_decode(file_get_contents($filename), true, 512, JSON_THROW_ON_ERROR);
     }
 
     /**

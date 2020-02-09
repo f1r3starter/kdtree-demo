@@ -48,7 +48,7 @@ final class KDController
      */
     public function __invoke(ServerRequestInterface $request): ResponseInterface
     {
-        $body = json_decode($request->getBody()->getContents(), true);
+        $body = json_decode($request->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
         $point = $this->search->nearest(new Point($body['lat'], $body['lng']));
 
         if (null === $point) {

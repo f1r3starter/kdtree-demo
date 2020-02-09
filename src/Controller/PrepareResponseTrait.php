@@ -23,7 +23,7 @@ trait PrepareResponseTrait
                 'Access-Control-Allow-Methods' => 'GET,HEAD,OPTIONS',
                 'Access-Control-Allow-Headers' => 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers',
             ],
-            json_encode($response)
+            json_encode($response, JSON_THROW_ON_ERROR, 512)
         );
     }
 
