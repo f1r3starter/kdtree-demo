@@ -5,10 +5,11 @@ namespace App\Controller;
 use App\Model\CitiesCollection;
 use App\Model\City;
 use KDTree\Exceptions\PointAlreadyExists;
+use KDTree\Interfaces\PointInterface;
 use KDTree\Search\NearestSearch;
 use KDTree\Structure\KDTree;
 use KDTree\ValueObject\Point;
-use Psr\Http\Message\{ResponseInterface, ServerRequestInterface};
+use Psr\Http\Message\ResponseInterface;
 
 final class KDController
 {
@@ -42,14 +43,13 @@ final class KDController
     }
 
     /**
-     * @param ServerRequestInterface $request
+     * @param PointInterface $searchingPoint
      *
      * @return ResponseInterface
      */
-    public function __invoke(ServerRequestInterface $request): ResponseInterface
+    public function __invoke(PointInterface $searchingPoint): ResponseInterface
     {
-        $body = json_decode($request->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
-        $point = $this->search->nearest(new Point($body['lat'], $body['lng']));
+        $point = $this->search->nearest($searchingPoint);
 
         if (null === $point) {
             $response = $this->formatResponse(null, null, null);

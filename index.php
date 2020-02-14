@@ -1,5 +1,6 @@
 <?php
 
+use App\Model\PointFactory;
 use App\Controller\{KDController, NaiveController};
 use App\Model\CitiesCollection;
 use Psr\Http\Message\ServerRequestInterface;
@@ -10,7 +11,7 @@ require('vendor/autoload.php');
 ini_set('memory_limit', '-1');
 
 $cities = new CitiesCollection(__DIR__ . '/cities.json');
-$responseMap = [
+$controllersMap = [
     'POST /naive' => new NaiveController($cities),
     'POST /kd' => new KDController($cities),
     'default' => static function() {
@@ -22,14 +23,17 @@ $responseMap = [
     },
 ];
 
+$pointFactory = new PointFactory();
+
 $loop = React\EventLoop\Factory::create();
 
 $server = new Server(
-    static function (ServerRequestInterface $request) use ($responseMap) {
+    static function (ServerRequestInterface $request) use ($controllersMap, $pointFactory) {
         $path = sprintf('%s %s', $request->getMethod(), $request->getUri()->getPath());
-        $response = $responseMap[$path] ?? $responseMap['default'];
+        $controller = $controllersMap[$path] ?? $controllersMap['default'];
+        $point = $pointFactory->createFromRequest($request);
 
-        return $response($request);
+        return $controller($point);
     }
 );
 

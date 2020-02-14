@@ -4,8 +4,9 @@ namespace App\Controller;
 
 use App\Model\CitiesCollection;
 use App\Model\City;
+use KDTree\Interfaces\PointInterface;
 use KDTree\ValueObject\Point;
-use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\ResponseInterface;
 
 final class NaiveController
 {
@@ -31,10 +32,13 @@ final class NaiveController
         }
     }
 
-    public function __invoke(ServerRequestInterface $request)
+    /**
+     * @param PointInterface $searchingPoint
+     *
+     * @return ResponseInterface
+     */
+    public function __invoke(PointInterface $searchingPoint): ResponseInterface
     {
-        $body = json_decode($request->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
-        $searchingPoint = new Point($body['lat'], $body['lng']);
         $foundPoint = null;
         $minDistance = PHP_INT_MAX;
         foreach ($this->points as $point) {
