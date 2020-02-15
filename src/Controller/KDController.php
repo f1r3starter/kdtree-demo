@@ -27,17 +27,17 @@ final class KDController
     {
         $kdTree = new KDTree(2);
 
-        /**
-         * @var City $city
-         */
-        foreach ($citiesCollection as $city) {
-            try {
-                $point = new Point($city->getLat(), $city->getLng());
-                $point->setName($this->prepareName($city));
-                $kdTree->put($point);
-            } catch (PointAlreadyExists $e) {
+        iterator_apply(
+            $citiesCollection,
+            static function(City $city) use ($kdTree) {
+                try {
+                    $point = new Point($city->getLat(), $city->getLng());
+                    $point->setName($this->prepareName($city));
+                    $kdTree->put($point);
+                } catch (PointAlreadyExists $e) {
+                }
             }
-        }
+        );
 
         $this->search = new NearestSearch($kdTree);
     }

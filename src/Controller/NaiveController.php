@@ -22,14 +22,14 @@ final class NaiveController
      */
     public function __construct(CitiesCollection $citiesCollection)
     {
-        /**
-         * @var City $city
-         */
-        foreach ($citiesCollection as $city) {
-            $point = new Point($city->getLat(), $city->getLng());
-            $point->setName($this->prepareName($city));
-            $this->points[] = $point;
-        }
+        iterator_apply(
+            $citiesCollection,
+            static function (City $city) {
+                $point = new Point($city->getLat(), $city->getLng());
+                $point->setName($this->prepareName($city));
+                $this->points[] = $point;
+            }
+        );
     }
 
     /**
@@ -39,15 +39,20 @@ final class NaiveController
      */
     public function __invoke(PointInterface $searchingPoint): ResponseInterface
     {
-        $foundPoint = null;
-        $minDistance = PHP_INT_MAX;
-        foreach ($this->points as $point) {
-            $distance = $point->distance($searchingPoint);
-            if ($distance < $minDistance) {
-                $minDistance = $distance;
-                $foundPoint = $point;
-            }
-        }
+        array_reduce(
+            $this->points,
+            static function (float $minDistance, PointInterface $point) use (&$foundPoint, $searchingPoint) {
+                $distance = $point->distance($searchingPoint);
+                if ($distance < $minDistance) {
+                    $foundPoint = $point;
+
+                    return $distance;
+                }
+
+                return $minDistance;
+            },
+            PHP_INT_MAX
+        );
 
         return $this->preparePostResponse(
             [
