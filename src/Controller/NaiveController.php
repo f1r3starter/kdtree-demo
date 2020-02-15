@@ -39,6 +39,8 @@ final class NaiveController
      */
     public function __invoke(PointInterface $searchingPoint): ResponseInterface
     {
+        $foundPoint = new Point(0, 0);
+
         array_reduce(
             $this->points,
             static function (float $minDistance, PointInterface $point) use (&$foundPoint, $searchingPoint) {
