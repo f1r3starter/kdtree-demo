@@ -30,7 +30,7 @@ final class City
      * @param float $lng
      * @param string $country
      */
-    public function __construct(string $name, float $lat, float $lng, string $country)
+    private function __construct(string $name, float $lat, float $lng, string $country)
     {
         $this->name = $name;
         $this->lat = $lat;
