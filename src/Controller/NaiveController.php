@@ -6,12 +6,9 @@ use App\Model\CitiesCollection;
 use App\Model\City;
 use KDTree\Interfaces\PointInterface;
 use KDTree\ValueObject\Point;
-use Psr\Http\Message\ResponseInterface;
 
 final class NaiveController
 {
-    use PrepareResponseTrait;
-
     /**
      * @var Point[]
      */
@@ -26,7 +23,9 @@ final class NaiveController
             $citiesCollection,
             static function (City $city) {
                 $point = new Point($city->getLat(), $city->getLng());
-                $point->setName($this->prepareName($city));
+                $point->setName(
+                    sprintf('%s (%s)', $city->getName(), $city->getCountry())
+                );
                 $this->points[] = $point;
             }
         );
@@ -35,9 +34,9 @@ final class NaiveController
     /**
      * @param PointInterface $searchingPoint
      *
-     * @return ResponseInterface
+     * @return array
      */
-    public function __invoke(PointInterface $searchingPoint): ResponseInterface
+    public function __invoke(PointInterface $searchingPoint): array
     {
         $foundPoint = new Point(0, 0);
 
@@ -56,12 +55,10 @@ final class NaiveController
             PHP_INT_MAX
         );
 
-        return $this->preparePostResponse(
-            [
-                'lat' => $foundPoint->getDAxis(0),
-                'lng' => $foundPoint->getDAxis(1),
-                'name' => $foundPoint->getName()
-            ]
-        );
+        return [
+            'lat' => $foundPoint->getDAxis(0),
+            'lng' => $foundPoint->getDAxis(1),
+            'name' => $foundPoint->getName()
+        ];
     }
 }

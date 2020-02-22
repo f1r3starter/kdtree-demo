@@ -9,12 +9,9 @@ use KDTree\Interfaces\PointInterface;
 use KDTree\Search\NearestSearch;
 use KDTree\Structure\KDTree;
 use KDTree\ValueObject\Point;
-use Psr\Http\Message\ResponseInterface;
 
 final class KDController
 {
-    use PrepareResponseTrait;
-
     /**
      * @var NearestSearch
      */
@@ -29,10 +26,12 @@ final class KDController
 
         iterator_apply(
             $citiesCollection,
-            static function(City $city) use ($kdTree) {
+            static function (City $city) use ($kdTree) {
                 try {
                     $point = new Point($city->getLat(), $city->getLng());
-                    $point->setName($this->prepareName($city));
+                    $point->setName(
+                        sprintf('%s (%s)', $city->getName(), $city->getCountry())
+                    );
                     $kdTree->put($point);
                 } catch (PointAlreadyExists $e) {
                 }
@@ -45,9 +44,9 @@ final class KDController
     /**
      * @param PointInterface $searchingPoint
      *
-     * @return ResponseInterface
+     * @return array
      */
-    public function __invoke(PointInterface $searchingPoint): ResponseInterface
+    public function __invoke(PointInterface $searchingPoint): array
     {
         $point = $this->search->nearest($searchingPoint);
 
@@ -58,10 +57,10 @@ final class KDController
                 $point->getDAxis(0),
                 $point->getDAxis(1),
                 $point->getName()
-             );
+            );
         }
 
-        return $this->preparePostResponse($response);
+        return $response;
     }
 
     /**
