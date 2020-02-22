@@ -2,17 +2,17 @@
 
 namespace App\Controller;
 
-use App\Model\City;
+use Psr\Http\Message\ResponseInterface;
 use React\Http\Response;
 
-trait PrepareResponseTrait
+class ResponseFormatter
 {
     /**
      * @param array $response
      *
-     * @return Response
+     * @return ResponseInterface
      */
-    private function preparePostResponse(array $response): Response
+    public function prepareResponse(array $response): ResponseInterface
     {
         return new Response(
             200,
@@ -25,15 +25,5 @@ trait PrepareResponseTrait
             ],
             json_encode($response, JSON_THROW_ON_ERROR, 512)
         );
-    }
-
-    /**
-     * @param City $city
-     *
-     * @return string
-     */
-    private function prepareName(City $city): string
-    {
-        return sprintf('%s (%s)', $city->getName(), $city->getCountry());
     }
 }
