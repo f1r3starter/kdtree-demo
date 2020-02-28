@@ -21,7 +21,7 @@ final class NaiveController
     {
         iterator_apply(
             $citiesCollection,
-            static function (City $city) {
+            function (City $city) {
                 $point = new Point($city->getLat(), $city->getLng());
                 $point->setName(
                     sprintf('%s (%s)', $city->getName(), $city->getCountry())
