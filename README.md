@@ -13,14 +13,14 @@ After you ran project, just open one of the next pages and click on the map:
 + [Naive implementation address](http://localhost:8080/naive "Naive implementation address")
 + [KDTree implementation address](http://localhost:8080/kd "Naive implementation address")
 
-![](images/screen.png)
+![](assets/screen.png)
 
 ## Benchmarks
 ### Naive implementation:
-![](images/naive.png)
+![](assets/naive.png)
 
 ### KDTree implementation:
-![](images/kd.png)
+![](assets/kd.png)
 
 As you can see results are **amazing**!
 

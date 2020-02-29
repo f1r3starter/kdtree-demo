@@ -18,7 +18,7 @@ $controllersMap = [
         return new Response(
             200,
             [],
-            file_get_contents(__DIR__ . '/view.html')
+            file_get_contents(__DIR__ . '/assets/view.html')
         );
     },
 ];
