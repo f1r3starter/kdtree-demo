@@ -14,6 +14,8 @@ final class CitiesCollection implements Iterator
 
     /**
      * @param string $filename
+     *
+     * @throws \JsonException
      */
     public function __construct(string $filename)
     {

@@ -11,6 +11,7 @@ class ResponseFormatter
      * @param array $response
      *
      * @return ResponseInterface
+     * @throws \JsonException
      */
     public function prepareResponse(array $response): ResponseInterface
     {
